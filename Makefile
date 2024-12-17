@@ -26,7 +26,10 @@ data:
 additional:
 	psql -U ${USER} -d scooters -a -f src/additional_actions.sql
 
-init_db: create_db tables triggers procedures data additional
+queries:
+	psql -U ${USER} -d scooters -a -f src/queries.sql
+
+init_db: create_db tables triggers procedures data additional queries
 
 
 run_db:

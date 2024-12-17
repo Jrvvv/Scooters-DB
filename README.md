@@ -9,6 +9,16 @@
 - Каждая из таблиц обязательно должна содержать ограничения
 
 ## Таблицы БД:
+* **Модели самокатов (scooter_models):**
+  - model_id (SERIAL, **PK**)
+  - name
+  - price_per_min
+
+* **Парковки (parking_lots):**
+  - lot_id (SERIAL, **PK**)
+  - rect_point_1 (POINT, set x1y1 rectangle point)
+  - rect_point_2 (POINT, set x2y2 rectangle point)
+
 * **Самокаты (scooters):**
   - scooter_id (SERIAL, **PK**)
   - charge_level (INTEGER, from 0 to 100)
@@ -16,22 +26,12 @@
   - modeil_id (INTEGER, **FK**)
   - status (VARCHAR, "active", "parked" and "paused" only)
 
-* **Модели самокатов (scooter_models):**
-  - model_id (SERIAL, **PK**)
-  - name
-  - price_per_min
-
 * **Пользователи (users):**
   - user_id (SERIAL, **PK**)
   - name (VARCHAR)
   - surname (VARCHAR)
   - patronymic (VARCHAR)
   - phone_number (UNIQUE VARCHAR, by regexp '^\+7\(\d{3}\)-\d{3}-\d{4}$', maximum one user per number)
-
-* **Парковки (parking_lots):**
-  - lot_id (SERIAL, **PK**)
-  - rect_point_1 (POINT, set x1y1 rectangle point)
-  - rect_point_2 (POINT, set x2y2 rectangle point)
 
 * **Поездки (rides):**
   - ride_id (SERIAL, **PK**)
@@ -48,13 +48,17 @@
   - reason (VARCHAR)
   - sum (NUMERIC(10, 2))
 
-Создай процедуру старта поездки, которая будет
-1) Удалять номер парковки
-2) Добавлять поездку, выставляя время старта как текущее
-3) Выставляет статус now
 
-Создай процедуру окончания поездки, которая будет
-1) Добавлять номер парковки
-2) Проверять, что точка самоката находится в пределах парковки
-3) Добавлять время окончания поездки как текущее + 1 мин
-4) Выставляет статус finished
+Более подробно создание **таблиц** описано в комментариях `src/create_db.sql`
+
+Создание **триггеров** описано в комментариях `src/add_triggers.sql`
+
+Создание **процедур** описано в комментариях `src/add_procedures.sql`
+
+Добавление **данных** описано в комментариях `src/insert_data.sql`
+
+Обработка **краевых случаев** описана в комментариях `src/additional_actions.sql`
+
+Примеры **запросов** описаны в комментариях `src/queries.sql`
+
+

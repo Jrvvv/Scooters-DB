@@ -1,3 +1,5 @@
+-- ================= Процедуры для пользователей =================
+
 -- Создание процедуры для старта поездки (пользователь)
 CREATE OR REPLACE PROCEDURE start_ride(scooter_id_param INTEGER, user_id_param INTEGER)
 LANGUAGE plpgsql
@@ -28,9 +30,6 @@ BEGIN
     END IF;
 END;
 $$;
-
-
-
 
 
 -- Создание процедуры для окончания поездки (пользователь)
@@ -69,10 +68,9 @@ $$;
 
 
 
-
+-- ================= Процедуры для работников проката =================
 
 -- Перевод самоката в service состояние (администратор, инженер)
--- Перевод самоката в service состояние
 CREATE OR REPLACE PROCEDURE set_scooter_to_service(scooter_id_param INTEGER)
 LANGUAGE plpgsql
 AS $$

@@ -60,11 +60,7 @@ BEGIN
         ride_time := ride_time::INTEGER;
 
         -- Рассчитываем стоимость поездки
-        IF price_per_min IS NOT NULL THEN
-            NEW.ride_price := price_per_min * ride_time;
-        ELSE
-            RAISE EXCEPTION 'Price per minute not found for the scooter model';
-        END IF;
+        NEW.ride_price := price_per_min * ride_time;
     END IF;
 
     RETURN NEW;
