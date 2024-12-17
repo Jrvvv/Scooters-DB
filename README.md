@@ -39,7 +39,7 @@
   - user_id (INTEGER, **FK**)
   - start_time (TIMESTAMP)
   - end_time (TIMESTAMP)
-  - ride_status (VARCHAR, "now" and "ended" only) 
+  - ride_status (VARCHAR, "now" and "ended" only)
   - ride_price (NUMERIC(10, 2), **calculated on *ride_time* and *price_per_min* from model**)
 
 * **Штрафы (fines)**
@@ -62,3 +62,9 @@
 Примеры **запросов** описаны в комментариях `src/queries.sql`
 
 
+Для более оптимальных вычислений можно создать индексы для полей 
+```sql
+CREATE INDEX idx_rides_ride_status ON rides (ride_status);
+CREATE INDEX idx_scooter_status ON scooters (status);
+```
+Поскольку часто запросы требуют проверки статуса поездки и самоката, о чем наглядно говорит содержимое процедур и триггеров.

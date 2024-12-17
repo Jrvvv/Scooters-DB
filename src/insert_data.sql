@@ -1,3 +1,6 @@
+CREATE INDEX idx_rides_ride_status ON rides (ride_status);
+CREATE INDEX idx_scooter_status ON scooters (status);
+
 -- Вставка данных о пользователях
 INSERT INTO users (name, surname, patronymic, phone_number)
 VALUES
